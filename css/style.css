@@ -12,13 +12,13 @@ body {
 #container {
     display: grid;
     height: 100vh;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 0.1fr 5fr 0.5fr 0.1fr;
     grid-template-areas:
-        "header header header"
-        "sidebar main main"
-        "content1 content2 content3"
-        "footer footer footer";
+        "header header"
+        "content1 content2"
+        "main main"
+        "footer footer";
 
 }
 
@@ -91,9 +91,13 @@ main {
     padding: 3%;
     border-style: dashed;
     border-color: blue;
+    /* background-color: black; */
 
 }
 
+#content1 img{
+    width: 10%;
+}
 #content1 ul li {
     list-style: none;
 }
