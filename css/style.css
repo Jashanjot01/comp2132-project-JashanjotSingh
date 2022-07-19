@@ -13,10 +13,11 @@ body {
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.1fr 5fr 0.5fr 0.1fr;
+    grid-template-rows: 0.1fr 5fr 0.2fr 0.2fr 0.1fr;
     grid-template-areas:
         "header header"
         "content1 content2"
+        "buttons buttons"
         "main main"
         "footer footer";
 
@@ -86,6 +87,19 @@ main {
     width: 80%;
 }
 
+#buttons{
+    grid-area: buttons;
+    text-align: center;
+    border-style: dashed;
+    border-color: blue;
+    padding: 1%;
+}
+
+button {
+    padding: 5px;
+    background-color: darkmagenta;
+}
+
 #content1 {
     grid-area: content1;
     padding: 3%;
@@ -95,7 +109,7 @@ main {
 
 }
 
-#content1 img{
+#content1 img, #content2 img{
     width: 10%;
 }
 #content1 ul li {
