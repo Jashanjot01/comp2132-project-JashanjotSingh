@@ -5,30 +5,23 @@ const opponentFinalScore = document.getElementById("opponentFinalScore");
 
 const playButton = document.getElementById("play");
 const resetButton = document.getElementById("reset");
+
 let i, j, score;
 let yourScore = 0;
 let opponentScore = 0;
 let count = 0;
-// let j = Math.floor(Math.random()*6);
 
-// document.getElementById("playerYou").innerHTML = `<h2><img src="images/product-images/dice-six-faces-${j+1}.png" alt=""></h2>`;
-
-// $("playerOpponent").html(`<h2><img src="images/product-images/dice-six-faces-${j+1}.png" alt=""></h2>`);
-$("playerOpponent").css('background-color', 'red');
-
-$("play").click(function(){
-    alert('Hi');
-})
 
 function resetEverything(){
     playerYou.innerHTML = '';
     playerOpponent.innerHTML = '';
-    yourFinalScore = '';
-    opponentFinalScore = '';
+    yourFinalScore.innerHTML = '';
+    opponentFinalScore.innerHTML = '';
     count = 0;
     score = 0;
     yourScore = 0;
     opponentScore = 0;
+    playButton.disabled = false;
 }
 
 function runDice() {
@@ -54,11 +47,11 @@ class Player {
         string += `<li>${runSecondDice()}</li>`;
         string += `</ul>`;
         if (i === j && i != 0 && j != 0) {
-            score = (i+j)*2;
+            score = ((i+1)+(j+1))*2;
         } else if (i == 0 || j == 0) {
             score = 0;
         } else {
-            score = i+j;
+            score = (i+1)+(j+1);
         }
         string += `<h2>Score: ${score}</h2>`;
         return string;
@@ -78,9 +71,6 @@ playButton.addEventListener('click', function () {
     playerOpponent.innerHTML = player02.describeSelf();
     opponentScore = opponentScore + score;
     opponentFinalScore.innerHTML = `<h2>Total Score: ${opponentScore}</h2>`;
-    } 
-    else {
-        this.removeEventListener;
     }
     
     if (count == 3)
@@ -95,20 +85,9 @@ playButton.addEventListener('click', function () {
         else{
             opponentFinalScore.innerHTML += "You won";
         }
-
+        playButton.disabled = true;
     }
 })
-
-function resetEverything(){
-    // playerYou.innerHTML = '';
-    // playerOpponent.innerHTML = '';
-    // yourFinalScore = '';
-    // opponentFinalScore = '';
-    count = 0;
-    score = 0;
-    yourScore = 0;
-    opponentScore = 0;
-}
 
 resetButton.addEventListener('click', resetEverything);
 
