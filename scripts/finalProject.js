@@ -3,6 +3,19 @@ const playerOpponent = document.getElementById("playerOpponent");
 const yourFinalScore = document.getElementById("yourFinalScore");
 const opponentFinalScore = document.getElementById("opponentFinalScore");
 
+const $howToPlay = $('#howToPlay');
+const $instructions = $('#instructions');
+
+$howToPlay.css('display', 'none');
+$instructions.css('display', 'none');
+
+$('#menu1').click(function(){
+    $howToPlay.slideToggle();
+})
+$('#menu2').click(function(){
+    $instructions.slideToggle();
+})
+
 const playButton = document.getElementById("play");
 const resetButton = document.getElementById("reset");
 
@@ -57,11 +70,18 @@ class Player {
         return string;
     }
 }
-
-const player01 = new Player("john");
-const player02 = new Player("jill");
+ 
+const player01 = new Player("John");
+const player02 = new Player("Computer");
 
 playButton.addEventListener('click', function () {
+    $('#playbutton').click(function(){
+        $('#playerYou').slideIn();
+        $('#yourFinalScore').slideIn();
+        $('#playerOpponent').slideIn();
+        $('#opponentFinalScore').slideIn();
+    })
+    
     count ++;
     if (count <= 3 ){
     playerYou.innerHTML = player01.describeSelf();

@@ -43,9 +43,9 @@ main {
     color: #002db3;
     font-size: large;
     font-weight: bold;
-    text-align: center;
+    /* text-align: center;
     margin-top: auto;
-    margin-bottom: auto;
+    margin-bottom: auto; */
 }
 
 #Images {
