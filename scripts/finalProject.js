@@ -3,6 +3,48 @@ const playerOpponent = document.getElementById("playerOpponent");
 const yourFinalScore = document.getElementById("yourFinalScore");
 const opponentFinalScore = document.getElementById("opponentFinalScore");
 
+// Home-pop-up
+
+const delay = 2000;
+
+const $homePopup = $('#home-pop-up');
+const $startGameButton = $("#start-pop-up");
+
+$homePopup.css('display', 'none');
+$("#play").click(function()
+{
+   $(this).data('clicked', true);
+}); 
+
+setTimeout(function () {
+
+    if ($("#play").data('clicked')){
+        console.log("No pop-up");
+    } else {
+        $homePopup.fadeIn();
+        $homePopup.css('display', 'block');
+    }
+}, delay);
+
+$startGameButton.click(function () {
+    $homePopup.fadeOut();
+    $homePopup.css('display', 'none');
+});
+
+// Result popUp
+
+const $resultPopup = $('#result-pop-up');
+const $result = $('#result');
+const $closeButton = $('#close-pop-up');
+$resultPopup.css('display','none');
+
+$closeButton.click(function () {
+    $resultPopup.fadeOut();
+    $resultPopup.css('display', 'none');
+});
+
+// Menu Animations
+
 const $howToPlay = $('#howToPlay');
 const $instructions = $('#instructions');
 
@@ -19,23 +61,12 @@ $('#menu2').click(function(){
 const playButton = document.getElementById("play");
 const resetButton = document.getElementById("reset");
 
+// Game
+
 let i, j, score;
 let yourScore = 0;
 let opponentScore = 0;
 let count = 0;
-
-
-function resetEverything(){
-    playerYou.innerHTML = '';
-    playerOpponent.innerHTML = '';
-    yourFinalScore.innerHTML = '';
-    opponentFinalScore.innerHTML = '';
-    count = 0;
-    score = 0;
-    yourScore = 0;
-    opponentScore = 0;
-    playButton.disabled = false;
-}
 
 function runDice() {
     j = Math.floor(Math.random() * 6);
@@ -96,18 +127,41 @@ playButton.addEventListener('click', function () {
     if (count == 3)
     {
         if (yourScore > opponentScore){
-        yourFinalScore.innerHTML += "You won";
+            console.log('You won');
+            $result.html('');
+            $result.append('<h2>Congratulations!</h2>');
+            $result.append('<p>You won !</p>')
+            $resultPopup.css('display','block');
         }
         else if (yourScore == opponentScore){
-        yourFinalScore.innerHTML += "Tied";
-        opponentFinalScore.innerHTML += "Tied";
+        console.log('Tied');
+        $result.html('');
+        $result.append('<h2>ohh!</h2>');
+        $result.append('<p>Its a tie ! <br> Better luck time</p>')
+        $resultPopup.css('display','block');
         }
         else{
-            opponentFinalScore.innerHTML += "You won";
+            console.log('You lost');
+            $result.html('');
+            $result.append('<h2>Sad!</h2>');
+            $result.append('<p>You lost ! <br> Better luck time</p>')
+            $resultPopup.css('display','block');
         }
         playButton.disabled = true;
     }
 })
+
+function resetEverything(){
+    playerYou.innerHTML = '';
+    playerOpponent.innerHTML = '';
+    yourFinalScore.innerHTML = '';
+    opponentFinalScore.innerHTML = '';
+    count = 0;
+    score = 0;
+    yourScore = 0;
+    opponentScore = 0;
+    playButton.disabled = false;
+}
 
 resetButton.addEventListener('click', resetEverything);
 
