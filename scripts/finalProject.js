@@ -1,15 +1,34 @@
 const pathToImages = "images/";
+
+const delay = 800;
+
+//Grabbing elements by Javascript
 const playerYou = document.getElementById("playerYou");
 const playerOpponent = document.getElementById("playerOpponent");
 const yourFinalScore = document.getElementById("yourFinalScore");
 const opponentFinalScore = document.getElementById("opponentFinalScore");
 
-// Home-pop-up
+const playButton = document.getElementById("play");
+const resetButton = document.getElementById("reset");
 
-const delay = 800;
-
+//Grabbing elements by jQuery
 const $homePopup = $('#home-pop-up');
 const $startGameButton = $("#start-pop-up");
+
+const $resultPopup = $('#result-pop-up');
+const $result = $('#result');
+const $closeButton = $('#close-pop-up');
+
+const $howToPlay = $('#howToPlay');
+const $rules = $('#rules');
+
+//Variables
+let firstDieValue, secondDieValue, score;
+let yourScore = 0;
+let opponentScore = 0;
+let count = 0;
+
+//=-=-=-=-=-= Home-pop-up =-=-=-=-=-=
 
 $homePopup.css('display', 'none');
 $("#play").click(function () {
@@ -31,11 +50,7 @@ $startGameButton.click(function () {
     $homePopup.css('display', 'none');
 });
 
-// Result popUp
-
-const $resultPopup = $('#result-pop-up');
-const $result = $('#result');
-const $closeButton = $('#close-pop-up');
+//=-=-=-=- Result popUp =-=-=-=-=
 
 $resultPopup.css('display', 'none');
 
@@ -44,10 +59,7 @@ $closeButton.click(function () {
     $resultPopup.css('display', 'none');
 });
 
-// Menu Animations
-
-const $howToPlay = $('#howToPlay');
-const $rules = $('#rules');
+//=-=-=- Menu Animations =-=-=-=-=
 
 $('#menu1').click(function () {
     $howToPlay.slideToggle();
@@ -56,26 +68,20 @@ $('#menu2').click(function () {
     $rules.slideToggle();
 })
 
-const playButton = document.getElementById("play");
-const resetButton = document.getElementById("reset");
+//=-=-=-=-=-=- Game =-=-=-=-=-=-=-=
 
-// Game
-
-let i, j, score;
-let yourScore = 0;
-let opponentScore = 0;
-let count = 0;
-
+//Function Roll 2 dices
 function runDice() {
-    j = Math.floor(Math.random() * 6);
-    return `<img src="images/product-images/dice-six-faces-${j + 1}.png" alt="Dice ${j + 1}" id='die'>`;
+    firstDieValue = Math.floor(Math.random() * 6);
+    return `<img src="images/product-images/dice-six-faces-${firstDieValue + 1}.png" alt="Dice ${firstDieValue + 1}" id='die'>`;
 }
 
 function runSecondDice() {
-    i = Math.floor(Math.random() * 6);
-    return `<img src="images/product-images/dice-six-faces-${i + 1}.png" alt="${i + 1}" id='die'>`;
+    secondDieValue = Math.floor(Math.random() * 6);
+    return `<img src="images/product-images/dice-six-faces-${secondDieValue + 1}.png" alt="${secondDieValue + 1}" id='die'>`;
 }
 
+//Intitates a Player object who rolls the dices and does the scoring.
 class Player {
 
     constructor(name) {
@@ -83,34 +89,39 @@ class Player {
     }
 
     describeSelf() {
-        let string = `<h2><img src="${pathToImages}${this.name}.jpg" alt="${this.name} id="profile">${this.name}</h2>`;
+        let string = `<h2><img src="${pathToImages}${this.name}.png" alt="${this.name} id="profile">${this.name}</h2>`;
         string += `<ul id='dices'>`;
         string += `<li>${runDice()}</li>`;
         string += `<li>${runSecondDice()}</li>`;
         string += `</ul>`;
-        if (i === j && i != 0 && j != 0) {
-            score = ((i + 1) + (j + 1)) * 2;
-        } else if (i == 0 || j == 0) {
+        if (firstDieValue === secondDieValue && firstDieValue != 0 && secondDieValue != 0) {
+            score = ((firstDieValue + 1) + (secondDieValue + 1)) * 2;
+        } else if (firstDieValue == 0 || secondDieValue == 0) {
             score = 0;
         } else {
-            score = (i + 1) + (j + 1);
+            score = (firstDieValue + 1) + (secondDieValue + 1);
         }
         string += `<h2>Score in round ${count}: ${score}</h2>`;
         return string;
     }
 }
 
-const player01 = new Player('jim');
-const player02 = new Player("joe");
+// Defining 2 players here
+const player01 = new Player('you');
+const player02 = new Player('computer');
 
 $('.youArea').css('display', 'none');
 $('.opponentArea').css('display', 'none');
 
+// Clicking of play button which calls the player object and displays final result
 playButton.addEventListener('click', function () {
+
+    // Count keeps count of number of rounds    
     if (count == 0) {
         $('.opponentArea').fadeIn(1500);
         $('.youArea').fadeIn(1500);
     }
+
     count++;
     if (count <= 3) {
         playerYou.innerHTML = player01.describeSelf();
@@ -148,6 +159,8 @@ playButton.addEventListener('click', function () {
     }
 })
 
+
+// Reset Function reset everything for starting of a new game
 function resetEverything() {
     $('.opponentArea').slideUp('slow');
     $('.youArea').slideUp('slow');
@@ -162,6 +175,7 @@ function resetEverything() {
     playButton.disabled = false;
 }
 
+// ResetButton starts a new game
 resetButton.addEventListener('click', resetEverything);
 
 

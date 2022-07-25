@@ -1,0 +1,292 @@
+@charset "UTF-8";
+
+//SASS variables
+$primary_color: black;
+$secondary_color: white;
+$wrapper_color: grey;
+
+//SASS mixin
+@mixin border-styling($borderRadius, $borderWidth, $borderStyle, $borderColor) {
+    border-radius: $borderRadius;
+    border: $borderWidth, $borderStyle, $borderColor;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Hind+Madurai:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(../images/background.jpg) repeat;
+}
+
+#container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.1fr 1.5fr 2fr 2fr 0.1fr;
+    grid-template-areas:
+        "header header"
+        "content1 content2"
+        "buttons buttons"
+        "main main"
+        "footer footer";
+
+}
+
+header {
+    grid-area: header;
+    background-color: $primary_color;
+    text-align: center;
+}
+
+header h1 {
+    color: $secondary_color;
+    padding: 1%;
+    font-family: 'Bebas Neue', cursive;
+    word-spacing: 1vh;
+    letter-spacing: 1px;
+}
+
+header img {
+    width: 10vh;
+}
+
+main {
+    grid-area: main;
+    font-family: 'Hind Madurai', sans-serif;
+    padding: 1%;
+    color: $primary_color;
+    font-size: large;
+    font-weight: bold;
+}
+
+.youArea,
+.opponentArea {
+    background-color: $primary_color;
+    padding: 10px;
+    @include border-styling(10px, 5px, solid, $secondary_color);
+    // border-radius: 10px;
+    // border: $secondary_color 5px solid;
+}
+
+hr {
+    @include border-styling(2px, 1px, solid, $primary_color);
+    // border-radius: 2px;
+    // border: 1px solid $primary_color;
+}
+
+#buttons {
+    grid-area: buttons;
+    text-align: center;
+    padding: 1%;
+}
+
+main button {
+    background-color: $primary_color;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    @include border-styling(10px, 3px, groove, $wrapper_color );
+    // border-radius: 10px;
+    // border-width: 3px; 
+    // border-style: groove;
+    // border-color:  $wrapper_color;
+    color: $secondary_color;
+}
+
+#buttons button {
+    background-color: $primary_color;
+    height: 60px;
+    width: 100px;
+    cursor: pointer;
+    color: $secondary_color;
+    @include border-styling(10px, 5px, groove, $wrapper_color );
+    // border-radius: 10px;
+    // border: 5px groove $wrapper_color;
+}
+
+#content1 {
+    grid-area: content1;
+    padding: 3%;
+}
+
+#content1 img,
+#content2 img {
+    padding: 2%;
+    width: 15%;
+}
+
+#content1 ul li {
+    list-style: none;
+
+}
+
+main ul li {
+    list-style: none;
+}
+
+main ul li::before {
+    content: "\1F525";
+}
+
+#content2 {
+    grid-area: content2;
+    padding: 3%;
+}
+
+#content2 ul li {
+    list-style: none;
+}
+
+#content1 h2,
+#content2 h2 {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 1px;
+    color: $secondary_color;
+}
+
+#content1,
+#content2 {
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: bolder;
+}
+
+#dices li {
+    display: inline;
+}
+
+h2>img {
+    max-width: 10%;
+    @include border-styling(50px, 5px, groove, $wrapper_color );
+    // border-style: groove;
+    // border-color: $wrapper_color;
+    // border-radius: 50px;
+    // border-width: 5px;
+}
+
+#dices>li>#die:hover {
+    transform: scale(1.1) rotate(-10deg);
+    transition: all .2s;
+}
+
+
+footer {
+    grid-area: footer;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 1px;
+    background-color: $primary_color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer h2 {
+    color: $secondary_color;
+}
+
+footer ul li {
+    padding: 1rem;
+    display: inline-flex;
+}
+
+footer a:hover {
+    transform: scale(1.2);
+}
+
+#result-pop-up,
+#home-pop-up {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba(243, 241, 243, 0.8);
+    color: $secondary_color;
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: bold;
+}
+
+#result-pop-up>div,
+#home-pop-up div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: fit-content;
+    padding: 2%;
+    @include border-styling(10px, 5px, groove, $wrapper_color );
+    // border-radius: 10px;
+    // border: 5px groove $wrapper_color;
+    background-color: $primary_color;
+    color: $secondary_color;
+    text-align: center;
+}
+
+#start-pop-up,
+#close-pop-up {
+    background-color: $secondary_color;
+    color: $primary_color;
+    border-radius: 10px;
+    padding: 1%;
+    font-weight: bold;
+    border: solid 3px $wrapper_color;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#close-pop-up:hover,
+#start-pop-up:hover {
+    background-color: $wrapper_color;
+    color: $secondary_color;
+    transform: scale(1.1);
+    transition: all .2s;
+}
+
+#close-pop-up {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+@media only screen and (max-width: 976px) {
+    #container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0.1fr 1.5fr 2fr 2fr 0.1fr;
+        grid-template-areas:
+            "header header"
+            "content1 content2"
+            "buttons buttons"
+            "main main"
+            "footer footer";
+    }
+
+    #content1 img,
+    #content2 img {
+        width: 70%;
+    }
+
+    #dices li {
+        display: block;
+    }
+
+    header {
+        font-size: small;
+    }
+
+    header img {
+        width: 10vh;
+    }
+
+    footer ul li {
+        padding: 2px;
+    }
+
+    h2>img {
+        max-width: 50%;
+    }
+}
