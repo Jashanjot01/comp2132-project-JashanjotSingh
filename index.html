@@ -19,40 +19,45 @@
     <div id="container">
         <header>
             <img src="images/product-images/domino-tiles.png" alt="">
-            <h1>ROLL A DICE </h1>
+            <h1>ROLL A DICE by Jashanjot Singh</h1>
         </header>
 
         <main>
             <h2>&#127922; How to play this game <button id="menu1">&#8597;</button></h2>
-            <p id="howToPlay">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem sunt numquam voluptatem
-                aspernatur ab, placeat quam, rerum commodi exercitationem consequatur corrupti. Quia explicabo
-                consectetur inventore ab voluptatem similique iure nobis.</p>
+            <ul id="howToPlay">
+                <li>To start, click the 'Roll Dice' button.</li>
+                <li>To advance to the next round, click the 'Roll Dice' button again.</li>
+                <li>After 3 rounds, the game is over and the final score is calculated.</li>
+                <li>If you want to play again, click the 'New Game' button or refresh the page. </li>
+            </ul>
             <br>
             <hr>
             <br>
-            <h2>&#127922; Instructions <button id="menu2">&#8597;</button></h2>
-            <p id="instructions">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas aliquam laudantium ex
-                laboriosam nostrum, molestiae, esse consequuntur, fuga fugiat veniam architecto eum. Repellendus,
-                corporis repellat eos fugit sapiente dolores? Rem?</p>
+            <h2>&#127922; Rules <button id="menu2">&#8597;</button></h2>
+            <ul id="rules">
+                <li>Each round, you and the computer both roll a pair of dice.</li>
+                <li>Your score for that round will be based on the sum of dice.</li>
+                <li>If you roll doubles(e.g. a 2 and a 2) then your score is multiplied by 2.</li>
+                <li>Rolling a 1 will give you a score of 0 for that round.</li>
+                <li>The player who has the most points at the end of three rounds is the winner.</li>
+            </ul>
         </main>
 
         <div id="buttons">
-            <button id="play">Play</button>
-            <button id="reset">Reset</button>
+            <button id="play">Roll Dice</button>
+            <button id="reset">New Game</button>
         </div>
 
         <div id="content1">
-            <h2>You</h2>
             <div class="youArea">
-                <div id="playerYou"></div>
+                <div id="playerYou"><img src="" alt="" id="die"></div>
                 <div id="yourFinalScore"></div>
             </div>
         </div>
 
         <div id="content2">
-            <h2>Opponent</h2>
             <div class="opponentArea">
-                <div id="playerOpponent"></div>
+                <div id="playerOpponent"><img src="" alt="" id="die"></div>
                 <div id="opponentFinalScore"></div>
             </div>
         </div>
@@ -74,10 +79,13 @@
         </footer>
         <section id='home-pop-up'>
             <div>
-                <!-- <button id="close-pop-up">&#x2715;</button> -->
-                <h2>Hello User</h2>
-                <p>Instructions: <br><br>To rotate the view of the bike click on the 'Start' animation button. Stop the
-                    animation by clicking 'Stop' button.</p>
+                <h2>Hello Player</h2>
+                <br>
+                <p>
+                    You are playing against Computer.<br>
+                    Please read 'how to play' and 'rules' carefully.
+                    ENJOYY !!!
+                </p>
                 <button id="start-pop-up">Start the game !</button>
             </div>
         </section>
